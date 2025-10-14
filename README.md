@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Alura Books
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Alura Books is a React single-page application that lets readers discover new titles, search the catalogue, and manage a personal list of favourites. The interface was built during the Alura React course and showcases common front-end patterns such as reusable components, client-side routing, and integration with a REST API.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Curated highlights** – Home page with a hero search section and a carousel of the latest releases.
+- **Smart search** – Search suggestions are populated from the `/livros` endpoint and allow adding a title to the favourites list with a single click.
+- **Favourite management** – Dedicated page that loads data from the `/favoritos` endpoint and lets users remove a book from their saved list.
+- **Reusable design system** – Components such as the header, logo, buttons, cards, and typography were implemented with `styled-components` to encourage reuse and easy theme updates.
 
-### `npm start`
+## Project structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+src/
+├─ componentes/        # Reusable UI building blocks (header, search box, cards, etc.)
+├─ rotas/              # Route-level pages (Home and Favoritos)
+├─ servico(s)/         # API clients responsible for livros and favoritos endpoints
+├─ imagens/            # Static assets used by the UI
+├─ index.js            # React entry point with router and global styles
+└─ reportWebVitals.js  # CRA performance helper
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> **Note:** The project currently exposes both `src/servico` and `src/servicos`. They contain equivalent Axios clients. Keep one or consolidate them before adding new features to avoid duplication.
 
-### `npm test`
+## Getting started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- [Node.js](https://nodejs.org/) v16 or later
+- npm (bundled with Node.js)
+- A REST service serving the following endpoints on `http://localhost:8000`:
+  - `GET /livros` – returns the catalogue used by the search and highlights
+  - `GET /favoritos`, `POST /favoritos/:id`, `DELETE /favoritos/:id` – manages the favourites list
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+During the original course a [json-server](https://github.com/typicode/json-server) instance was used to mock these endpoints. Any equivalent implementation will work.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# install dependencies
+npm install
+```
 
-### `npm run eject`
+### Useful scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# start the development server on http://localhost:3000
+npm start
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# run the Jest test suite in watch mode
+npm test
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# generate an optimized production build in the build/ directory
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Development notes
 
-## Learn More
+- Components rely on `styled-components`. Ensure your editor supports tagged template literals for the best DX.
+- API calls are implemented with Axios. To extend the API client, add new helpers to the `servico` directory and export them alongside the existing ones.
+- The app uses React Router v6. Add new pages by defining routes in `src/index.js` and creating a corresponding component in `src/rotas`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is provided for educational purposes as part of the Alura React learning path. Please review the course terms of use before distributing or deploying the application.
