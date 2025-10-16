@@ -1,6 +1,6 @@
-# 📚 Alura Books
+# 📚 Books
 
-**Alura Books** é uma aplicação *single-page* desenvolvida em **React**, que permite aos leitores descobrir novos títulos, pesquisar no catálogo e gerenciar uma lista pessoal de favoritos.  
+**Books** é uma aplicação *single-page* desenvolvida em **React**, que permite aos leitores descobrir novos títulos, pesquisar no catálogo e gerenciar uma lista pessoal de favoritos.  
 O projeto foi criado durante o curso de React da **Alura** e demonstra padrões comuns de front-end, como componentes reutilizáveis, *client-side routing* e integração com uma **API REST**.
 
 ---
