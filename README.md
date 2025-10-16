@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Estante Digital
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Estante Digital é uma single-page application em React que ajuda leitoras e leitores a descobrir novos títulos, pesquisar o catálogo e administrar uma lista pessoal de favoritos. O projeto foi desenvolvido durante o curso de React da Alura e serve como vitrine para padrões modernos de front-end, incluindo componentes reutilizáveis, roteamento no cliente e consumo de uma API REST.
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+- **Destaques editoriais** – A página inicial combina uma busca em destaque com um carrossel dos lançamentos mais recentes.
+- **Busca inteligente** – As sugestões são preenchidas com dados do endpoint `/livros`, permitindo adicionar um título aos favoritos com um clique.
+- **Gestão de favoritos** – A página dedicada carrega dados de `/favoritos` e possibilita remover livros já salvos.
+- **Design system reutilizável** – Header, logo, botões, cards e tipografia foram implementados com `styled-components`, facilitando a manutenção do tema.
 
-### `npm start`
+## Estrutura do projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+src/
+├─ componentes/        # Blocos de UI reutilizáveis (cabeçalho, campo de busca, cards etc.)
+├─ rotas/              # Páginas de alto nível (Home e Favoritos)
+├─ servico(s)/         # Clientes de API responsáveis pelos endpoints de livros e favoritos
+├─ imagens/            # Ativos estáticos usados na interface
+├─ index.js            # Ponto de entrada do React com router e estilos globais
+└─ reportWebVitals.js  # Utilitário do Create React App para métricas de performance
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> **Atenção:** O projeto mantém as pastas `src/servico` e `src/servicos`, que contêm clientes Axios equivalentes. Considere consolidá-las antes de evoluir a integração para evitar duplicidade.
 
-### `npm test`
+## Pré-requisitos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/) versão 16 ou superior
+- npm (instalado junto com o Node.js)
+- Uma API REST disponível em `http://localhost:8000` com os endpoints:
+  - `GET /livros` – catálogo utilizado na busca e nos destaques
+  - `GET /favoritos`, `POST /favoritos/:id`, `DELETE /favoritos/:id` – operações da lista de favoritos
 
-### `npm run build`
+Durante o curso original utilizou-se um [json-server](https://github.com/typicode/json-server) para simular esses endpoints, mas qualquer implementação equivalente funciona.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Como executar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# instalar dependências
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# iniciar o servidor de desenvolvimento em http://localhost:3000
+npm start
+```
 
-### `npm run eject`
+## Scripts disponíveis
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# executar os testes (Jest) em modo watch
+npm test
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# gerar build otimizado na pasta build/
+npm run build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Notas de desenvolvimento
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Os componentes utilizam `styled-components`. Configure seu editor para dar suporte a tagged template literals e obter a melhor experiência.
+- As chamadas HTTP são feitas com Axios. Novas integrações podem ser adicionadas no diretório `servico`, exportando-as junto com os helpers existentes.
+- O projeto usa React Router v6. Para adicionar novas páginas, defina as rotas em `src/index.js` e crie o componente correspondente em `src/rotas`.
 
-## Learn More
+## Licença
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este material é disponibilizado para fins educacionais como parte da trilha de React da Alura. Consulte os termos do curso antes de redistribuir ou publicar a aplicação.
